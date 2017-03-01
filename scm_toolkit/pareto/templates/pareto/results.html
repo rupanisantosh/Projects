@@ -1,0 +1,29 @@
+<html>
+{% extends "personal/header.html" %}
+{% block extrahead %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+	
+{% endblock %}
+
+{% block content %}
+<head>
+    <meta charset="utf-8"/>
+	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+</head>
+<body>
+<h1>Chart.js Sample</h1>
+<p style="padding-bottom: 30px; width: 800px;">
+<script type="text/javascript">
+google.load("visualization", "1", {packages:["corechart"]});
+</script>
+<div>{{ chart.as_html }}</div>
+
+		
+<p style="padding-bottom: 60px; width: 800px;">
+<table id='datatable' class="display" cellspacing="0" width="800%>
+<div>	{{ data_table | safe }}	</div>
+</table>
+</body>
+
+{% endblock %}

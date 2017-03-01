@@ -1,0 +1,87 @@
+
+{% extends "personal/header.html" %}
+{% block extrahead %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+	
+{% endblock %}
+
+
+{% block content %}
+
+<head>
+    <title>{{title}}</title>
+	
+	<title>Filter Control</title>	
+    <meta charset="utf-8">
+
+	
+</head>
+<body>
+
+
+
+
+	<div class="container">
+    <h4>{{header}}</h4>
+
+    {% if form.errors %}
+        <p style="color: red;">
+            Please correct the error{{ form.errors|pluralize }} below.
+        </p>
+    {% endif %}
+
+    <form action="" enctype="multipart/form-data"  method="post">
+        <table>
+            {{ form.as_table }}
+        </table>
+        {% csrf_token %}
+        <input type="submit" value="Submit">
+    </form>
+	</div>
+	<p style="padding-bottom: 30px; width: 300px;">
+	
+	<canvas id="mycanvas" width="500" height="300"></canvas>
+	
+	<p style="padding-bottom: 30px; width: 300px;">
+	<table id='datatable' class="display" cellspacing="0" width="100%>
+	<div>	{{ data_table | safe }}	</div>
+	</table>
+	</div>
+	
+	
+<script>
+var chrt = document.getElementById("mycanvas").getContext("2d");
+var myarr = [65, 59, 80, 81, 56, 55, 40];
+var data = {
+    labels: ["January", "February", "March", "April", "May", "June", "July"], //x-axis
+    datasets: [
+        {
+            label: "My First dataset", //optional
+            fillColor: "rgba(220,220,220,0.8)",
+            strokeColor: "rgba(220,220,220,0.8)",
+            highlightFill: "rgba(220,220,220,0.75)",
+            highlightStroke: "rgba(220,220,220,1)",
+            data: [65, 59, 80, 81, 56, 55, 40] // y-axis
+        },
+		{
+            label: "My Second dataset", //optional
+            fillColor: "rgba(220,120,220,0.8)",
+            strokeColor: "rgba(220,120,220,0.8)",
+            highlightFill: "rgba(220,220,220,0.75)",
+            highlightStroke: "rgba(220,220,220,1)",
+            data: myarr
+        }
+    ]
+};
+
+var myFirstChart = new Chart(chrt).Bar(data);
+
+</script>
+	
+</body>
+{% endblock %}
+
+
+
+    
